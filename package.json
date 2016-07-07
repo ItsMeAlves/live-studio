@@ -1,0 +1,28 @@
+{
+  "name": "live-studio",
+  "version": "1.0.0",
+  "description": "Virtual studio for bands who want to rock the distance",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsmealves/live-studio.git"
+  },
+  "keywords": [
+    "studio",
+    "band",
+    "music"
+  ],
+  "author": "Gabriel Alves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsmealves/live-studio/issues"
+  },
+  "homepage": "https://github.com/itsmealves/live-studio#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.4.8"
+  }
+}
