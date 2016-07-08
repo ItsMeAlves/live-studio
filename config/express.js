@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var http = require("http").Server(app);
-var io = require("socket.io")(http);
+var websockets = require("./websockets")(http);
 
 //Setting constants
 app.set("view engine", "jade");
@@ -11,12 +11,8 @@ app.set("HTTP", http);
 
 //Setting middlewares
 app.use(express.static('resources/assets'));
+app.use(websockets);
 
-io.on("connection", function(socket) {
-    socket.on("sample", function(data) {
-        io.emit("sample", data);
-    });
-});
 
 //Exports the configured express instance
 module.exports = app;
