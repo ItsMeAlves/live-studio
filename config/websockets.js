@@ -4,7 +4,6 @@ module.exports = function(http) {
     return function(request, response, next) {
         io.on("connection", function(socket) {
             socket.on("sample", function(data) {
-                console.log(data);
                 io.emit("sample", data);
             });
         });

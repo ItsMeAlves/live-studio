@@ -2,7 +2,7 @@ var config = {
     audio: true,
     video: false
 };
-
+//08007220151
 const audio = new AudioContext();
 
 navigator.getUserMedia = navigator.getUserMedia ||
@@ -10,20 +10,17 @@ navigator.getUserMedia = navigator.getUserMedia ||
                          navigator.mozGetUserMedia;
 
 
-function send(data) {
-    socket.emit("sample", data);
-}
-
 function handle(stream) {
     const input = audio.createMediaStreamSource(stream);
-    const processor = audio.createScriptProcessor(2048, 1, 1);
+    const processor = audio.createScriptProcessor(512, 1, 1);
+    const analyser = audio.createAnalyser();
+
     processor.onaudioprocess = function(node) {
-        send(node.inputBuffer);
+        socket.emit("sample", node.inputBuffer.getChannelData(0));
     }
 
     input.connect(processor);
-    // input.connect(audio.destination);
-    processor.connect(audio.destination);
+    processor.connect(analyser);
 }
 
 if(navigator.getUserMedia) {
